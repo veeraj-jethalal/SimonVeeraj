@@ -2,8 +2,8 @@ package simon;
 
 import java.awt.Color;
 
-import guiPractice.components.Action;
-import guiPractice.components.Clickable;
+import guiPractice.component.Action;
+import guiPractice.component.Clickable;
 
 public interface ButtonInterfaceVeeraj extends Clickable {
 
@@ -18,5 +18,7 @@ public interface ButtonInterfaceVeeraj extends Clickable {
 	void highlight();
 
 	void dim();
+
+
 
 }

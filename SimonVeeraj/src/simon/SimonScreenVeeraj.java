@@ -3,11 +3,8 @@ package simon;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import guiPractice.components.Action;
-import guiPractice.components.Button;
-import guiPractice.components.TextLabel;
-import guiPractice.components.Visible;
-import guiPractice.sampleGames.ClickableScreen;
+import guiPractice.component.TextLabel;
+import guiPractice.component.Visible;
 
 public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 
@@ -158,5 +155,11 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 	private ButtonInterfaceVeeraj getAButton() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void initObjects(ArrayList<guiPractice.component.Visible> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
