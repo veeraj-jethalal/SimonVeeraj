@@ -33,13 +33,13 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 	@Override
 	public void setX(int i) {
 		// TODO Auto-generated method stub
-		this.x = i;
+		x = i;
 	}
 
 	@Override
 	public void setY(int i) {
 		// TODO Auto-generated method stub
-		this.y = i;
+		y = i;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 	@Override
 	public void setAction(Action a) {
 		// TODO Auto-generated method stub
-		
+		this.a = a;
 	}
 
 
