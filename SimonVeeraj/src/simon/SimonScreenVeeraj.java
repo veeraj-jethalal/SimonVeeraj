@@ -155,7 +155,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 	
 	private ButtonInterfaceVeeraj getAButton() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Button();
 	}
 
 	@Override
