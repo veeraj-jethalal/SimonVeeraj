@@ -6,8 +6,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import guiPractice.Screen;
-import guiPractice.components.Clickable;
-import guiPractice.components.Visible;
+import guiPractice.component.Clickable;
+import guiPractice.component.Visible;
 
 public abstract class ClickableScreen extends Screen implements MouseListener {
 

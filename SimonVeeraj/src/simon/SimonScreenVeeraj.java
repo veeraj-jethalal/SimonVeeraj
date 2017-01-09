@@ -3,6 +3,7 @@ package simon;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import guiPractice.component.Action;
 import guiPractice.component.TextLabel;
 import guiPractice.component.Visible;
 

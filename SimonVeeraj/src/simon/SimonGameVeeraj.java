@@ -1,7 +1,7 @@
 package simon;
 
 import guiPractice.GUIApplication;
-import guiPractice.components.Component;
+import guiPractice.component.Component;
 
 public class SimonGameVeeraj extends GUIApplication {
 
