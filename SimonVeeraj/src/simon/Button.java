@@ -72,7 +72,7 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 	@Override
 	public void act() {
 		// TODO Auto-generated method stub
-		
+		a.act();
 	}
 
 
