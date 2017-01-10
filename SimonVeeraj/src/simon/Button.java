@@ -13,11 +13,11 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 	Color color;
 	Action a;
 	private Graphics2D circle;
-	final static int width = 50;
-	final static int height = 50;
+	final static int WIDTH = 25;
+	final static int HEIGHT = 25;
 	
 	public Button() {
-		super(0, 0, width, height);
+		super(0, 0, WIDTH, HEIGHT);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -49,6 +49,7 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 		circle.fillOval(x, y, 50, 50);
 		circle.setColor(Color.BLACK);
 		circle.drawOval(x, y, 50, 50);
+		update();
 	}
 
 	@Override
@@ -79,9 +80,9 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 
 
 	@Override
-	public boolean isHovered(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isHovered(int x, int y) {
+		double distance = Math.sqrt(Math.pow(x-(getX()+WIDTH/2), 2)+Math.pow(y-(getY()+HEIGHT/2), 2));
+		return distance < WIDTH/2;
 	}
 
 

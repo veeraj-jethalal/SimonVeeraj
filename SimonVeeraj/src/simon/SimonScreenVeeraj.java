@@ -136,10 +136,10 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 							}
 						});
 					blink.start();
-					if(b == move.get(sequenceIndex).getButton()){
+					if(b == move.get(sequenceIndex).getButton()&&acceptingInput){
 						sequenceIndex++;
 					}
-					else{
+					else if(acceptingInput){
 						progress.gameOver();
 					}
 					if(sequenceIndex == move.size()){
