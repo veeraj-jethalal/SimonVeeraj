@@ -29,6 +29,21 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		// TODO Auto-generated method stub
+		addButtons();
+		progress = getProgress();
+		label = new TextLabel(130,230,300,40,"Let's play Simon!");
+		move = new ArrayList<MoveInterfaceVeeraj>();
+		//add 2 moves to start
+		lastSelectedButton = -1;
+		move.add(randomMove());
+		move.add(randomMove());
+		roundNumber = 0;
+		viewObjects.add(progress);
+		viewObjects.add(label);
+		
+	}
+	private void addButtons() {
+		// TODO Auto-generated method stub
 		int numberOfButtons = 6;
 		buttonI = new ButtonInterfaceVeeraj[numberOfButtons];
 		Color[] colors = {Color.red, Color.green, Color.blue, Color.yellow, Color.pink, Color.orange};
@@ -59,6 +74,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 					}
 					else if(acceptingInput){
 						progress.gameOver();
+						acceptingInput = false;
 					}
 					if(sequenceIndex == move.size()){
 						Thread nextRound = new Thread(SimonScreenVeeraj.this);
@@ -69,18 +85,8 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 			});
 			viewObjects.add(b);
 		}
-		progress = getProgress();
-		label = new TextLabel(130,230,300,40,"Let's play Simon!");
-		move = new ArrayList<MoveInterfaceVeeraj>();
-		//add 2 moves to start
-		lastSelectedButton = -1;
-		move.add(randomMove());
-		move.add(randomMove());
-		roundNumber = 0;
-		viewObjects.add(progress);
-		viewObjects.add(label);
-		
 	}
+
 	@Override
 	public void run() {
 		label.setText("");
@@ -93,10 +99,11 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		move.add(randomMove());
 		progress.setRound(roundNumber);
 		progress.setSequenceSize(move.size());
-		changeText("Simon's Turn");
+		changeText("Simon's turn.");
+		label.setText("");
 		playSequence();
-		changeText("Your turn");
-		label.setText("Your Turn");
+		changeText("Your turn.");
+		label.setText("");
 		acceptingInput = true;
 		sequenceIndex = 0;
 	}
@@ -126,7 +133,6 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		try{
 			label.setText(s);
 			Thread.sleep(1000);
-			label.setText("");
 		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
@@ -141,6 +147,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 			random = (int)(Math.random()*buttonI.length);
 		}
 		b = (Button) buttonI[random];
+		lastSelectedButton = random;
 		return new Move(b);
 	}
 
