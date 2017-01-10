@@ -63,14 +63,12 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 		g.fillOval(0, 0, width, height);
 		g.setColor(Color.black);
 		g.drawOval(0, 0, width-1, height-1);
-		if(highlight){
-			g.setColor(Color.white);
-		}
+		
 	}
 
 	@Override
 	public void setAction(Action action) {
-		this.action = action;;
+		this.action = action;
 	}
 
 }

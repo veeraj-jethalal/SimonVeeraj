@@ -19,7 +19,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 	private boolean acceptingInput;
 	private int sequenceIndex;
 	private int lastSelectedButton;
-	
+
 	public SimonScreenVeeraj(int width, int height) {
 		super(width, height);
 		Thread thread = new Thread(this);
@@ -40,7 +40,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		roundNumber = 0;
 		viewObjects.add(progress);
 		viewObjects.add(label);
-		
+
 	}
 	private void addButtons() {
 		// TODO Auto-generated method stub
@@ -68,18 +68,18 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 								b.dim();
 							}
 						});
-					blink.start();
-					if(b == move.get(sequenceIndex).getButton()&&acceptingInput){
-						sequenceIndex++;
-					}
-					else if(acceptingInput){
-						progress.gameOver();
-						acceptingInput = false;
-					}
-					if(sequenceIndex == move.size()){
-						Thread nextRound = new Thread(SimonScreenVeeraj.this);
-						nextRound.start();
-					}
+						blink.start();
+						if(b == move.get(sequenceIndex).getButton()&&acceptingInput){
+							sequenceIndex++;
+						}
+						else if(acceptingInput){
+							progress.gameOver();
+							acceptingInput = false;
+						}
+						if(sequenceIndex == move.size()){
+							Thread nextRound = new Thread(SimonScreenVeeraj.this);
+							nextRound.start();
+						}
 					}
 				}
 			});
@@ -107,7 +107,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		acceptingInput = true;
 		sequenceIndex = 0;
 	}
-	
+
 	public void playSequence(){
 		ButtonInterfaceVeeraj b;
 		b = null;
@@ -126,9 +126,9 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		}
 		b.dim();
 	}
-	
 
-	
+
+
 	public void changeText(String s){
 		try{
 			label.setText(s);
@@ -137,7 +137,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
+
 
 
 	private MoveInterfaceVeeraj randomMove() {
@@ -153,21 +153,21 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 
 	/**
 	Placeholder until partner finishes implementation of ProgressInterface
-	**/
+	 **/
 	private ProgressInterfaceVeeraj getProgress() {
 		// TODO Auto-generated method stub
 		return new Progress();
 	}
 
-	
-	
+
+
 	private ButtonInterfaceVeeraj getAButton() {
 		// TODO Auto-generated method stub
 		return new Button();
 	}
 
 
-	
+
 
 
 }
