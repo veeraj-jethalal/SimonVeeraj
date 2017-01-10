@@ -60,9 +60,9 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 		else{
 			g.setColor(Color.lightGray);
 		}
-		g.fillOval(0, 0, 50, 50);
+		g.fillOval(0, 0, width, height);
 		g.setColor(Color.black);
-		g.drawOval(0, 0, 50-1, 50-1);
+		g.drawOval(0, 0, width-1, height-1);
 		if(highlight){
 			g.setColor(Color.white);
 		}
