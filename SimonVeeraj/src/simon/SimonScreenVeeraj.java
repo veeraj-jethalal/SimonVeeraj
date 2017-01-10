@@ -19,7 +19,6 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 	private boolean acceptingInput;
 	private int sequenceIndex;
 	private int lastSelectedButton;
-	private ArrayList<Visible> temp;
 	
 	public SimonScreenVeeraj(int width, int height) {
 		super(width, height);
@@ -30,7 +29,46 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		// TODO Auto-generated method stub
-		addButtons();
+		int numberOfButtons = 6;
+		buttonI = new ButtonInterfaceVeeraj[numberOfButtons];
+		Color[] colors = {Color.red, Color.green, Color.blue, Color.yellow, Color.pink, Color.orange};
+		for(int i = 0; i < numberOfButtons; i++){
+			buttonI[i] = getAButton();
+			buttonI[i].setColor(colors[i]);
+			buttonI[i].setX(50*i + 100);
+			buttonI[i].setY(200);
+			final ButtonInterfaceVeeraj b = buttonI[i];
+			b.setAction(new Action(){
+				public void act(){
+					if(acceptingInput){
+						Thread blink = new Thread(new Runnable(){
+							public void run(){
+								b.highlight();
+								try{
+									Thread.sleep(800);
+								}
+								catch(InterruptedException e){
+									e.printStackTrace();
+								}
+								b.dim();
+							}
+						});
+					blink.start();
+					if(b == move.get(sequenceIndex).getButton()&&acceptingInput){
+						sequenceIndex++;
+					}
+					else if(acceptingInput){
+						progress.gameOver();
+					}
+					if(sequenceIndex == move.size()){
+						Thread nextRound = new Thread(SimonScreenVeeraj.this);
+						nextRound.start();
+					}
+					}
+				}
+			});
+			viewObjects.add(b);
+		}
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
 		move = new ArrayList<MoveInterfaceVeeraj>();
@@ -41,6 +79,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		roundNumber = 0;
 		viewObjects.add(progress);
 		viewObjects.add(label);
+		
 	}
 	@Override
 	public void run() {
@@ -81,9 +120,6 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		b.dim();
 	}
 	
-	private MoveInterfaceVeeraj getMove(Button b) {
-		return null;
-	}
 
 	
 	public void changeText(String s){
@@ -105,7 +141,7 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 			random = (int)(Math.random()*buttonI.length);
 		}
 		b = (Button) buttonI[random];
-		return getMove(b);
+		return new Move(b);
 	}
 
 	/**
@@ -113,49 +149,10 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 	**/
 	private ProgressInterfaceVeeraj getProgress() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Progress();
 	}
 
-	private void addButtons() {
-		int numberOfButtons = 6;
-		Color[] colors = {Color.red, Color.green, Color.blue, Color.yellow, Color.pink, Color.orange};
-		for(int i = 0; i < numberOfButtons; i++){
-			final ButtonInterfaceVeeraj b = getAButton();
-			b.setColor(colors[i]);
-			b.setX(30*i + 30);
-			b.setY(50);
-			b.setAction(new Action(){
-				public void act(){
-					if(acceptingInput){
-						Thread blink = new Thread(new Runnable(){
-							public void run(){
-								b.highlight();
-								try{
-									Thread.sleep(800);
-								}
-								catch(InterruptedException e){
-									e.printStackTrace();
-								}
-								b.dim();
-							}
-						});
-					blink.start();
-					if(b == move.get(sequenceIndex).getButton()&&acceptingInput){
-						sequenceIndex++;
-					}
-					else if(acceptingInput){
-						progress.gameOver();
-					}
-					if(sequenceIndex == move.size()){
-						Thread nextRound = new Thread(SimonScreenVeeraj.this);
-						nextRound.start();
-					}
-					}
-				}
-			});
-			viewObjects.add(b);
-		}
-	}
+	
 	
 	private ButtonInterfaceVeeraj getAButton() {
 		// TODO Auto-generated method stub

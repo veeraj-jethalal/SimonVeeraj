@@ -10,13 +10,13 @@ import guiPractice.component.Component;
 public class Progress extends Component implements ProgressInterfaceVeeraj {
 	
 	private static int w = 170;
-	private static int h = 120;
+	private static int h = 70;
 	private String round;
 	private boolean over;
 	private String sequence;
 
 	public Progress() {
-		super(20, 20, w, h);
+		super(20, 50, w, h);
 		// TODO Auto-generated constructor stub
 	}
 

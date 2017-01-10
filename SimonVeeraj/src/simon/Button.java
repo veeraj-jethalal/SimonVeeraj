@@ -9,92 +9,68 @@ import guiPractice.component.Component;
 
 public class Button extends Component implements ButtonInterfaceVeeraj {
 
-	static int x;
-	static int y;
-	Color color;
-	Action a;
-	private Graphics2D circle;
-	final static int WIDTH = 25;
-	final static int HEIGHT = 25;
+	private Color color;
+	private Color currentColor;
+	private boolean highlight;
+	private Action action;
+	private static int width = 50;
+	private static int height = 50;
 	
 	public Button() {
-		super(0, 0, WIDTH, HEIGHT);
-		// TODO Auto-generated constructor stub
+		super(0, 0, 50,50);
 	}
-	
-	
-	
 
 	@Override
 	public void setColor(Color color) {
-		// TODO Auto-generated method stub
 		this.color = color;
-	}
-
-	@Override
-	public void setX(int i) {
-		// TODO Auto-generated method stub
-		x = i;
-	}
-
-	@Override
-	public void setY(int i) {
-		// TODO Auto-generated method stub
-		y = i;
+		update();
 	}
 
 	@Override
 	public void highlight() {
-		// TODO Auto-generated method stub
-		circle.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		circle.setColor(color);
-		circle.fillOval(x, y, 50, 50);
-		circle.setColor(Color.BLACK);
-		circle.drawOval(x, y, 50, 50);
+		highlight = true;
+		currentColor = color;
 		update();
 	}
 
 	@Override
 	public void dim() {
-		// TODO Auto-generated method stub
-		circle.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		circle.setColor(Color.WHITE);
-		circle.fillOval(x, y, 50, 50);
-		circle.setColor(Color.BLACK);
-		circle.drawOval(x, y, 50, 50);
+		currentColor = Color.lightGray;
+		highlight = false;
+		update();
 	}
-
-	@Override
-	public void setAction(Action a) {
-		// TODO Auto-generated method stub
-		this.a = a;
-	}
-
-
-
 
 	@Override
 	public void act() {
-		// TODO Auto-generated method stub
-		a.act();
+		action.act();
 	}
-
-
-
 
 	@Override
 	public boolean isHovered(int x, int y) {
-		double distance = Math.sqrt(Math.pow(x-(getX()+WIDTH/2), 2)+Math.pow(y-(getY()+HEIGHT/2), 2));
-		return distance < WIDTH/2;
+		double distance = Math.sqrt(Math.pow(x-(getX()+width/2), 2)+Math.pow(y-(getY()+height/2), 2));
+		return distance < width/2;
 	}
-
-
-
 
 	@Override
-	public void update(Graphics2D arg0) {
-		// TODO Auto-generated method stub
-		
+	public void update(Graphics2D g) {
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		if(currentColor != null){
+			g.setColor(currentColor);
+		}
+		else{
+			g.setColor(Color.lightGray);
+		}
+		g.fillOval(0, 0, 50, 50);
+		g.setColor(Color.black);
+		g.drawOval(0, 0, 50-1, 50-1);
+		if(highlight){
+			g.setColor(Color.white);
+		}
 	}
-	
+
+	@Override
+	public void setAction(Action action) {
+		this.action = action;;
+	}
+
 }
