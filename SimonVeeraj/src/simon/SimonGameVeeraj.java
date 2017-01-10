@@ -1,12 +1,12 @@
 package simon;
 
 import guiPractice.GUIApplication;
-import guiPractice.component.Component;
 
 public class SimonGameVeeraj extends GUIApplication {
 
 	public SimonGameVeeraj() {
 		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	@Override

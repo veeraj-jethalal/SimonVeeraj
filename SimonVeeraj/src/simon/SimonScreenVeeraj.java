@@ -2,8 +2,10 @@ package simon;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import guiPractice.component.Action;
+import guiPractice.component.ClickableScreen;
 import guiPractice.component.TextLabel;
 import guiPractice.component.Visible;
 
@@ -25,6 +27,21 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		thread.start();
 	}
 
+	@Override
+	public void initAllObjects(List<Visible> viewObjects) {
+		// TODO Auto-generated method stub
+		addButtons();
+		progress = getProgress();
+		label = new TextLabel(130,230,300,40,"Let's play Simon!");
+		move = new ArrayList<MoveInterfaceVeeraj>();
+		//add 2 moves to start
+		lastSelectedButton = -1;
+		move.add(randomMove());
+		move.add(randomMove());
+		roundNumber = 0;
+		viewObjects.add(progress);
+		viewObjects.add(label);
+	}
 	@Override
 	public void run() {
 		label.setText("");
@@ -78,21 +95,8 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	
 
-	@Override
-	public void initAllObjects(ArrayList<Visible> viewObjects) {
-		addButtons();
-		progress = getProgress();
-		label = new TextLabel(130,230,300,40,"Let's play Simon!");
-		move = new ArrayList<MoveInterfaceVeeraj>();
-		//add 2 moves to start
-		lastSelectedButton = -1;
-		move.add(randomMove());
-		move.add(randomMove());
-		roundNumber = 0;
-		viewObjects.add(progress);
-		viewObjects.add(label);
-	}
 
 	private MoveInterfaceVeeraj randomMove() {
 		Button b;
@@ -158,9 +162,8 @@ public class SimonScreenVeeraj extends ClickableScreen implements Runnable {
 		return new Button();
 	}
 
-	@Override
-	public void initObjects(ArrayList<guiPractice.component.Visible> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+
+	
+
+
 }

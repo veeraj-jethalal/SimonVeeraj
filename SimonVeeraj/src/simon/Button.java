@@ -2,6 +2,7 @@ package simon;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import guiPractice.component.Action;
 import guiPractice.component.Component;
@@ -45,6 +46,7 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 	@Override
 	public void highlight() {
 		// TODO Auto-generated method stub
+		circle.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		circle.setColor(color);
 		circle.fillOval(x, y, 50, 50);
 		circle.setColor(Color.BLACK);
@@ -55,6 +57,7 @@ public class Button extends Component implements ButtonInterfaceVeeraj {
 	@Override
 	public void dim() {
 		// TODO Auto-generated method stub
+		circle.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		circle.setColor(Color.WHITE);
 		circle.fillOval(x, y, 50, 50);
 		circle.setColor(Color.BLACK);
